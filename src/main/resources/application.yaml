@@ -1,9 +1,9 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/micros
+    url: jdbc:postgresql://${DB_HOST:localhost}:5432/${DB_DATABASE:micros}
     driverClassName: org.postgresql.Driver
-    username: micro
-    password: Micro123
+    username: ${DB_USERNAME:micro}
+    password: ${DB_PASSWORD:Micro123}
   sql:
     init:
       mode: always
