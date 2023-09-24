@@ -1,9 +1,6 @@
 package com.example.simple_service.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +10,7 @@ import java.util.UUID;
 @Entity
 @Data
 @NoArgsConstructor
+@IdClass(SubscriptionIdKey.class)
 @Table(name = "subscriptions")
 public class Subscription {
 
@@ -20,6 +18,7 @@ public class Subscription {
     @Column(name = "user_id")
     UUID userId;
 
+    @Id
     @Column(name = "subscription_id")
     UUID subscriptionId;
 
