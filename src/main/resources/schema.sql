@@ -44,6 +44,11 @@ CREATE TABLE users_scheme.subscriptions
             NOT VALID
 );
 
+CREATE INDEX i_user_id_b_tree
+    ON users_scheme.subscriptions USING btree
+        (user_id ASC NULLS LAST);
+
+
 ALTER TABLE IF EXISTS users_scheme.subscriptions
     OWNER to micro;
 
