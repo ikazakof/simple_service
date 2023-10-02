@@ -33,7 +33,7 @@ public class SubscriptionService {
     public SubscriptionDto createSubscription(SubscriptionDto subscriptionDto) {
         Subscription subscriptionToSave = subscriptionMapper.convertDtoToSubscription(subscriptionDto);
         checkSubscriptionOption(subscriptionToSave);
-        subscriptionRepository.insertInTable(subscriptionToSave.getUserId(), subscriptionToSave.getSubscriptionId(), subscriptionToSave.getSubDate());
+        subscriptionRepository.save(subscriptionToSave);
         log.info("Subscriber with id - " + subscriptionToSave.getUserId() + " subscribed to user with id - " + subscriptionToSave.getSubscriptionId());
         return subscriptionMapper.convertSubscriptionToDto(subscriptionToSave);
     }
@@ -62,7 +62,7 @@ public class SubscriptionService {
             log.error("Subscriptions with userId - " + id + " does not exist");
             throw new SubscriptionNotFoundException("Subscriptions with userId - " + id + " does not exist");
         }
-        List<Subscription> subscriptionFromDb = subscriptionRepository.findAllById(Collections.singleton(id));
+        List<Subscription> subscriptionFromDb = subscriptionRepository.findAllSubscriptionsByUserId(id);
         List<SubscriptionDto> subscriptionDto = subscriptionFromDb.stream()
                 .map(subscriptionMapper::convertSubscriptionToDto)
                 .toList();

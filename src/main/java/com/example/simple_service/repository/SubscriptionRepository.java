@@ -9,19 +9,16 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Repository
 @Table(name = "subscriptions")
 public interface SubscriptionRepository extends JpaRepository<Subscription, UUID> {
 
-    @Modifying
-    @Query(value = "INSERT INTO users_scheme.subscriptions (user_id, subscription_id, subscription_date) " +
-            "VALUES (:id, :sub_id, :sub_date)", nativeQuery = true)
-    void insertInTable(@Param("id") UUID id, @Param("sub_id") UUID subId, @Param("sub_date") ZonedDateTime subDate);
-
     boolean existsSubscriptionsByUserId(UUID id);
-
+    @Query(value = "SELECT * FROM users_scheme.subscriptions WHERE user_id=:user_id", nativeQuery = true)
+    List<Subscription> findAllSubscriptionsByUserId(@Param("user_id") UUID userId);
     boolean existsByUserIdAndSubscriptionId(UUID userId, UUID SubscriptionId);
 
     @Modifying
