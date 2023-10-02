@@ -24,7 +24,7 @@ public class UserService {
     private final UserMapper userMapper;
 
     public UserDto createUser(UserDto userDto) {
-        log.error("UserDto to create - " + userDto);
+        log.info("UserDto to create - " + userDto);
         User userToCreate = userMapper.convertDtoToUser(userDto);
         if (userRepository.existsByEmail(userToCreate.getEmail())) {
             log.error("User with this email - " + userToCreate.getEmail() + " already exist");
@@ -34,9 +34,9 @@ public class UserService {
             log.error("User with this phone - " + userToCreate.getPhone() + " already exist");
             throw new UserPhoneExistException("User with this phone - " + userToCreate.getPhone() + " already exist");
         }
-        userRepository.save(userToCreate);
-        log.info("User created - " + userToCreate);
-        return userMapper.convertUserToDto(userToCreate);
+        User savedUser = userRepository.save(userToCreate);
+        log.info("User created - " + savedUser);
+        return userMapper.convertUserToDto(savedUser);
     }
 
     public UserDto getUserById(UUID id) {
@@ -56,9 +56,9 @@ public class UserService {
             throw new UserNotFoundException("User with id - " + userId + " does not exist");
         }
         User userToUpdate = userMapper.getUserUpdatedByDto(userDto, userRepository.findById(userId).get());
-        userRepository.save(userToUpdate);
-        log.info("Updated user - " + userToUpdate);
-        return userMapper.convertUserToDto(userToUpdate);
+        User updatedUser = userRepository.save(userToUpdate);
+        log.info("Updated user - " + updatedUser);
+        return userMapper.convertUserToDto(updatedUser);
     }
 
     public String deleteUserById(UUID id, String hardDelete) {
