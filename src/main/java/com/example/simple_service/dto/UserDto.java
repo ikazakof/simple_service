@@ -17,6 +17,8 @@ public class UserDto {
     private String email;
     private String password;
     private String phone;
+
+    private String City;
     private ZonedDateTime regDate;
     private ZonedDateTime updateDate;
     private Boolean isDeleted;

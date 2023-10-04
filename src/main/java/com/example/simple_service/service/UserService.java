@@ -2,6 +2,7 @@ package com.example.simple_service.service;
 
 import com.example.simple_service.dto.UserDto;
 import com.example.simple_service.entity.User;
+import com.example.simple_service.exception.CityNotFoundException;
 import com.example.simple_service.exception.UserEmailExistException;
 import com.example.simple_service.exception.UserNotFoundException;
 import com.example.simple_service.exception.UserPhoneExistException;
@@ -23,9 +24,15 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
+    private final CityService cityService;
+
     public UserDto createUser(UserDto userDto) {
         log.info("UserDto to create - " + userDto);
         User userToCreate = userMapper.convertDtoToUser(userDto);
+        if (!"".equals(userToCreate.getCity()) && !cityService.cityExistByName(userToCreate.getCity())) {
+            log.error("Selected city - " + userToCreate.getCity() + " does not exist. Leave the field empty or select another city");
+            throw new CityNotFoundException("Selected city - " + userToCreate.getCity() + " does not exist. Leave the field empty or select another city");
+        }
         if (userRepository.existsByEmail(userToCreate.getEmail())) {
             log.error("User with this email - " + userToCreate.getEmail() + " already exist");
             throw new UserEmailExistException("User with this email - " + userToCreate.getEmail() + " already exist");
@@ -56,6 +63,10 @@ public class UserService {
             throw new UserNotFoundException("User with id - " + userId + " does not exist");
         }
         User userToUpdate = userMapper.getUserUpdatedByDto(userDto, userRepository.findById(userId).get());
+        if (!"".equals(userToUpdate.getCity()) && !cityService.cityExistByName(userToUpdate.getCity())) {
+            log.error("Selected city - " + userToUpdate.getCity() + " does not exist. Leave the field empty or select another city");
+            throw new CityNotFoundException("Selected city - " + userToUpdate.getCity() + " does not exist. Leave the field empty or select another city");
+        }
         User updatedUser = userRepository.save(userToUpdate);
         log.info("Updated user - " + updatedUser);
         return userMapper.convertUserToDto(updatedUser);
