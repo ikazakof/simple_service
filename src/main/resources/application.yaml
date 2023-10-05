@@ -4,9 +4,6 @@ spring:
     driverClassName: org.postgresql.Driver
     username: ${DB_USERNAME:micro}
     password: ${DB_PASSWORD:Micro123}
-  sql:
-    init:
-      mode: always
 
 
   jpa:
@@ -18,4 +15,9 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         default_schema: users_scheme
 
+  liquibase:
+    enabled: true
+    drop-first: ${IS_DROP_FIRST:true}
+    default-schema: users_scheme
+    change-log: classpath:db/changelog/changelog-master.xml
 

@@ -19,6 +19,7 @@
 		<lombook.version>1.18.26</lombook.version>
 		<mapstruct.version>1.5.3.Final</mapstruct.version>
 		<spring.config-processor.version>2.6.7</spring.config-processor.version>
+		<liquibase.version>4.23.0</liquibase.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -37,6 +38,12 @@
 			<artifactId>postgresql</artifactId>
 			<version>${postgresql.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+			<version>${liquibase.version}</version>
+		</dependency>
+
 <!--	utils	-->
 		<dependency>
 			<groupId>org.mapstruct</groupId>
