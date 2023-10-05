@@ -24,7 +24,7 @@ public class User {
     private String email;
     private String password;
     private String phone;
-    private String City;
+    private String city;
     @Column (name = "registration_date")
     private ZonedDateTime regDate;
     @Column (name = "update_date")
