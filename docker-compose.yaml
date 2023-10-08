@@ -1,0 +1,36 @@
+services:
+  psql:
+    image: postgres:16
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: micros
+      POSTGRES_USER: micros_user
+      POSTGRES_PASSWORD: micros_pass
+    volumes:
+      - "./init.sql:/docker-entrypoint-initdb.d/init.sql"
+      - "../docker_tmp/postgres_data:/var/lib/postgresql/data"
+    restart: unless-stopped
+
+  pgadmin:
+    image: dpage/pgadmin4:7.7
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin@mail.ru
+      PGADMIN_DEFAULT_PASSWORD: pgpass
+    restart: unless-stopped
+    depends_on:
+      - psql
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      DB_HOST: psql
+      DB_USERNAME: micros_user
+      DB_PASSWORD: micros_pass
+    volumes:
+      - "/app:/var/lib/app"
+    depends_on:
+      - psql
