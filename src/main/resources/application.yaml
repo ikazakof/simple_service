@@ -5,7 +5,6 @@ spring:
     username: ${DB_USERNAME:micro}
     password: ${DB_PASSWORD:Micro123}
 
-
   jpa:
     show-sql: true
     hibernate:
@@ -20,4 +19,7 @@ spring:
     drop-first: ${IS_DROP_FIRST:true}
     default-schema: users_scheme
     change-log: classpath:db/changelog/changelog-master.xml
+
+swagger-api:
+  version: "1.0"
 

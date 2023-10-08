@@ -1,4 +1,4 @@
-package com.example.simple_service.utils;
+package com.example.simple_service.utils.web;
 
 import lombok.experimental.UtilityClass;
 
