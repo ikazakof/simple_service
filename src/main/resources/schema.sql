@@ -1,7 +1,20 @@
 DROP TABLE IF EXISTS users_scheme.users CASCADE;
 DROP TABLE IF EXISTS users_scheme.subscriptions CASCADE;
+DROP TABLE IF EXISTS users_scheme.cities CASCADE;
 DROP SCHEMA IF EXISTS users_scheme CASCADE;
 CREATE SCHEMA users_scheme;
+
+CREATE TABLE users_scheme.cities
+(
+    id  uuid NOT NULL DEFAULT gen_random_uuid(),
+    title text NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE INDEX i_city_title_b_tree
+    ON users_scheme.cities USING btree
+        (title ASC NULLS LAST);
+
 
 CREATE TABLE users_scheme.users
 (
@@ -12,6 +25,7 @@ CREATE TABLE users_scheme.users
     email text NOT NULL,
     password text NOT NULL,
     phone text NOT NULL,
+    city text DEFAULT '',
     registration_date TIMESTAMP WITH TIME ZONE NOT NULL,
     update_date TIMESTAMP WITH TIME ZONE NOT NULL,
     is_deleted boolean NOT NULL DEFAULT False,
@@ -51,4 +65,5 @@ CREATE INDEX i_user_id_b_tree
 
 ALTER TABLE IF EXISTS users_scheme.subscriptions
     OWNER to micro;
+
 

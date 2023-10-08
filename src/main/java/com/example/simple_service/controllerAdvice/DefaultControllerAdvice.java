@@ -47,4 +47,10 @@ public class DefaultControllerAdvice {
         BaseErrorResponse baseErrorResponse = new BaseErrorResponse(e.getMessage());
         return new ResponseEntity<>(baseErrorResponse, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(CityNotFoundException.class)
+    public ResponseEntity<BaseErrorResponse> handleCityNotFoundException(CityNotFoundException e){
+        BaseErrorResponse baseErrorResponse = new BaseErrorResponse(e.getMessage());
+        return new ResponseEntity<>(baseErrorResponse, HttpStatus.NOT_FOUND);
+    }
 }
