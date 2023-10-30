@@ -1,0 +1,54 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="kazakov_i" id="insert-users-table">
+
+        <insert tableName="users">
+            <column name="id" value="dcc20e8e-490f-4653-a561-4c80c4402ba4"/>
+            <column name="first_name" value="Vladimir"/>
+            <column name="last_name" value="Matveev"/>
+            <column name="middle_name" value="Anatolievich"/>
+            <column name="email" value="first@mail.ru"/>
+            <column name="password" value="somePass"/>
+            <column name="phone" value="+79144235246"/>
+            <column name="city" value="Москва"/>
+            <column name="registration_date" value="2023-09-18 12:34:56 Europe/Moscow"/>
+            <column name="update_date" value="2023-09-18 12:34:56 Europe/Moscow"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="id" value="86759ec4-d46d-4aa7-b908-041becce066f"/>
+            <column name="first_name" value="Dmitriy"/>
+            <column name="last_name" value="Barmaleev"/>
+            <column name="middle_name" value="Sergeevich"/>
+            <column name="email" value="second@mail.ru"/>
+            <column name="password" value="somePass2"/>
+            <column name="phone" value="+79144235156"/>
+            <column name="city" value="Арстоцка"/>
+            <column name="registration_date" value="2023-09-17 12:34:56 Europe/Moscow"/>
+            <column name="update_date" value="2023-09-17 12:34:56 Europe/Moscow"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="id" value="6e14b7fe-c784-42db-904f-5f1f6e0bdbca"/>
+            <column name="first_name" value="Alexey"/>
+            <column name="last_name" value="Strugatskiy"/>
+            <column name="middle_name" value="Vladimirovich"/>
+            <column name="email" value="third@mail.ru"/>
+            <column name="password" value="somePass3"/>
+            <column name="phone" value="+79294235156"/>
+            <column name="city" value=""/>
+            <column name="registration_date" value="2023-09-16 12:34:56 Europe/Moscow"/>
+            <column name="update_date" value="2023-09-16 12:34:56 Europe/Moscow"/>
+        </insert>
+
+    </changeSet>
+
+
+</databaseChangeLog>

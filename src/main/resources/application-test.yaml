@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:5432/${DB_DATABASE:micros_test_db}
+    driverClassName: org.postgresql.Driver
+    username: ${DB_USERNAME:micro_test_usr}
+    password: ${DB_PASSWORD:micro_test_pwd}
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: users_scheme
+
+  liquibase:
+    enabled: true
+    drop-first: ${IS_DROP_FIRST:true}
+    default-schema: users_scheme
+    change-log: db/changelog/changelog-master-test.xml
+swagger-api:
+  version: "1.0"
+
