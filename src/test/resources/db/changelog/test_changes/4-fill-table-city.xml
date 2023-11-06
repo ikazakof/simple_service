@@ -1,0 +1,24 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="kazakov_i" id="insert-cities-table">
+        <insert tableName="cities">
+            <column name="id" value="6a782f8e-5ada-40f3-a764-d39beedb6ad5"/>
+            <column name="title" value="Москва"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="id" value="18e6bbc0-bb7a-4c9e-bc98-1068fe8a67c2"/>
+            <column name="title" value="Волгоград"/>
+        </insert>
+        <insert tableName="cities">
+            <column name="id" value="09523b10-ef70-4300-85ff-f7397dbf525a"/>
+            <column name="title" value="Арстоцка"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
